@@ -50,7 +50,7 @@ public class Kunde {
 	}
 
 	public Status getKundenStatus() {
-		return kundenStatus;
+		return this.kundenStatus;
 	}
 
 	public void setKundenStatus(Status kundenStatus) {
@@ -58,7 +58,7 @@ public class Kunde {
 	}
 
 	public Zimmer getKundenZimmer() {
-		return kundenZimmer;
+		return this.kundenZimmer;
 	}
 
 	public void setKundenZimmer(Zimmer kundenZimmer) {
@@ -67,8 +67,7 @@ public class Kunde {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"Kunde [id=%s, name=%s, nachname=%s, kundenStatus=%s, kreis=%s, rechnung=%s, kundenZimmer=%s]", id,
-				name, nachname, kundenStatus, kreis, rechnung, kundenZimmer);
+		return String.format("Kunde [id=%s, name=%s, nachname=%s, kreis=%s, rechnung=%s]", this.id, this.name, this.nachname, this.kreis, this.rechnung);
 	}
+
 }

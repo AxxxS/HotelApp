@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import moduls.Kunde;
 import moduls.Status;
 import moduls.Zimmer;
 import moduls.ZimmerTyp;
@@ -12,6 +13,11 @@ import services.ZimmerService;
 public class ZimmerServiceImpl extends KundenServiceImpl implements ZimmerService {
 	private static HashMap<Integer, Zimmer> alleZimmer = new HashMap<>();
 	private static int zNummer;
+
+	@Override
+	public List<Kunde> readKundenInZimmer(int zNummer) {
+		return this.readZ(zNummer).getAktuelleKunden();
+	}
 
 	@Override
 	public Zimmer createZimmer(ZimmerTyp typ) {
@@ -26,13 +32,14 @@ public class ZimmerServiceImpl extends KundenServiceImpl implements ZimmerServic
 	public List<Zimmer> createZimmer(int anzahl, ZimmerTyp typ, int geschoss) {
 		List<Zimmer> ergebnisListe = new ArrayList<Zimmer>();
 		for (int i = 0; i < anzahl; i++) {
-			Zimmer zimmer = createZimmer(typ);
-			zimmer.setGeschoss(geschoss);
+			Zimmer zimmer = this.createZimmer(typ);
+			zimmer.setZgeschoss(geschoss);
 			ergebnisListe.add(zimmer);
 		}
 		return ergebnisListe;
 	}
 
+	@Override
 	public HashMap<Integer, Zimmer> getAlleZimmer() {
 		return alleZimmer;
 	}

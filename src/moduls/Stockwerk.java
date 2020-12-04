@@ -3,7 +3,7 @@ package moduls;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stockwerk extends Kunde {
+public class Stockwerk {
 
 	private int geschoss;
 	private List<Zimmer> zimmerListe = new ArrayList<Zimmer>();
@@ -24,9 +24,13 @@ public class Stockwerk extends Kunde {
 		this.zimmerListe.add(zimmer);
 	}
 
+	public void setZimmerListe(List<Zimmer> zimmerListe) {
+		this.zimmerListe = zimmerListe;
+	}
+
 	@Override
 	public String toString() {
-		return "Stockwerk [geschoss=" + geschoss + ", zimmerListe=" + zimmerListe + "]";
+		return String.format("Stockwerk [geschoss=%s, zimmerListe=%s]", this.geschoss, this.zimmerListe);
 	}
 
 }

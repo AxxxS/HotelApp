@@ -20,7 +20,7 @@ public class StockwerkServsImpl extends ZimmerServiceImpl implements StockwerkSe
 	@Override
 	public void create(int stockwerkAnzahl) {
 		for (int i = 0; i < stockwerkAnzahl; i++) {
-			create();
+			this.create();
 		}
 
 	}
@@ -43,12 +43,18 @@ public class StockwerkServsImpl extends ZimmerServiceImpl implements StockwerkSe
 	}
 
 	@Override
-	public List<Kunde> readKundenInZimmer(int geschoss) {
-		List<Kunde> ergebnisliste = new ArrayList<Kunde>();
-		for (Zimmer zimmer : stockwerke.get(geschoss).getZimmerListe()) {
-			ergebnisliste.addAll(zimmer.getAktuelleKunden());
+	public List<Kunde> readKundenInStockwerk(int geschoss) {
+		List<Kunde> ergebnisListe = new ArrayList<Kunde>();
+		for (Stockwerk stockwerk : stockwerke.values()) {
+			if (stockwerk.getGeschoss() == geschoss) {
+				for (Zimmer zimmer : stockwerk.getZimmerListe()) {
+					ergebnisListe.addAll(zimmer.getAktuelleKunden());
+				}
+
+			}
 		}
-		return ergebnisliste;
+		return ergebnisListe;
+
 	}
 
 	@Override
@@ -65,11 +71,11 @@ public class StockwerkServsImpl extends ZimmerServiceImpl implements StockwerkSe
 	@Override
 	public void addZimmer(int geschoss, int ez, int dz, int pd, int su, int ps) {
 
-		read(geschoss).getZimmerListe().addAll(createZimmer(ez, ZimmerTyp.EZ, geschoss));
-		read(geschoss).getZimmerListe().addAll(createZimmer(dz, ZimmerTyp.DZ, geschoss));
-		read(geschoss).getZimmerListe().addAll(createZimmer(pd, ZimmerTyp.PD, geschoss));
-		read(geschoss).getZimmerListe().addAll(createZimmer(su, ZimmerTyp.SU, geschoss));
-		read(geschoss).getZimmerListe().addAll(createZimmer(ps, ZimmerTyp.PS, geschoss));
+		this.read(geschoss).getZimmerListe().addAll(this.createZimmer(ez, ZimmerTyp.EZ, geschoss));
+		this.read(geschoss).getZimmerListe().addAll(this.createZimmer(dz, ZimmerTyp.DZ, geschoss));
+		this.read(geschoss).getZimmerListe().addAll(this.createZimmer(pd, ZimmerTyp.PD, geschoss));
+		this.read(geschoss).getZimmerListe().addAll(this.createZimmer(su, ZimmerTyp.SU, geschoss));
+		this.read(geschoss).getZimmerListe().addAll(this.createZimmer(ps, ZimmerTyp.PS, geschoss));
 
 	}
 

@@ -3,9 +3,9 @@ package moduls;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zimmer extends Stockwerk {
+public class Zimmer {
 	private int zNummer;
-	private int geschoss;
+	private int zgeschoss;
 	private Status status;
 	private ZimmerTyp typ;
 	private List<Kunde> gebuchteKunden = new ArrayList<Kunde>();
@@ -13,15 +13,23 @@ public class Zimmer extends Stockwerk {
 	private boolean bezahlt;
 
 	public int getzNummer() {
-		return zNummer;
+		return this.zNummer;
 	}
 
 	public void setzNummer(int zNummer) {
 		this.zNummer = zNummer;
 	}
 
+	public int getZgeschoss() {
+		return this.zgeschoss;
+	}
+
+	public void setZgeschoss(int zgeschoss) {
+		this.zgeschoss = zgeschoss;
+	}
+
 	public Status getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(Status status) {
@@ -29,7 +37,7 @@ public class Zimmer extends Stockwerk {
 	}
 
 	public ZimmerTyp getTyp() {
-		return typ;
+		return this.typ;
 	}
 
 	public void setTyp(ZimmerTyp typ) {
@@ -37,38 +45,33 @@ public class Zimmer extends Stockwerk {
 	}
 
 	public List<Kunde> getGebuchteKunden() {
-		return gebuchteKunden;
+		return this.gebuchteKunden;
+	}
+
+	public void setGebuchteKunden(List<Kunde> gebuchteKunden) {
+		this.gebuchteKunden = gebuchteKunden;
 	}
 
 	public List<Kunde> getAktuelleKunden() {
-		return aktuelleKunden;
+		return this.aktuelleKunden;
 	}
 
-	public List<Kunde> setAktuelleKunden(List<Kunde> list) {
-		return aktuelleKunden = list;
+	public void setAktuelleKunden(List<Kunde> aktuelleKunden) {
+		this.aktuelleKunden = aktuelleKunden;
 	}
 
 	public boolean isBezahlt() {
-		return bezahlt;
+		return this.bezahlt;
 	}
 
 	public void setBezahlt(boolean bezahlt) {
 		this.bezahlt = bezahlt;
 	}
 
-	public int getGeschoss() {
-		return geschoss;
-	}
-
-	public void setGeschoss(int geschoss) {
-		this.geschoss = geschoss;
-	}
-
 	@Override
 	public String toString() {
-		return String.format(
-				"Zimmer [zNummer=%s, geschoss=%s, status=%s, typ=%s, gebuchteKunden=%s, aktuelleKunden=%s, bezahlt=%s]",
-				zNummer, geschoss, status, typ, gebuchteKunden, aktuelleKunden, bezahlt);
+		return String.format("Zimmer [zNummer=%s, zgeschoss=%s, status=%s, typ=%s, gebuchteKunden=%s, aktuelleKunden=%s, bezahlt=%s]", this.zNummer, this.zgeschoss, this.status, this.typ,
+		        this.gebuchteKunden, this.aktuelleKunden, this.bezahlt);
 	}
 
 }

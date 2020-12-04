@@ -3,6 +3,7 @@ package services;
 import java.util.HashMap;
 import java.util.List;
 
+import moduls.Kunde;
 import moduls.Status;
 import moduls.Stockwerk;
 import moduls.Zimmer;
@@ -22,5 +23,7 @@ public interface StockwerkService {
 	List<Zimmer> readByZimmerTyp(int geschoss, ZimmerTyp typ);
 
 	Stockwerk read(int geschoss);
+
+	List<Kunde> readKundenInStockwerk(int geschoss);
 
 }

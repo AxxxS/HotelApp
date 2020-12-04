@@ -31,17 +31,6 @@ public class KundenServiceImpl implements KundenService {
 	}
 
 	@Override
-	public List<Kunde> readKundenInZimmer(int zNummer) {
-		List<Kunde> ergebnis = new ArrayList<Kunde>();
-		for (Kunde kunde : kunden.values()) {
-			if (kunde.getKundenZimmer().getzNummer() == zNummer) {
-				ergebnis.add(kunde);
-			}
-		}
-		return ergebnis;
-	}
-
-	@Override
 	public Kunde createUndBuchen(String name, String nachname, Kreis kreis, Zimmer kundenZimmer, Status kundenStatus) {
 		Kunde kunde = new Kunde();
 		kunde.setName(name);
@@ -62,6 +51,7 @@ public class KundenServiceImpl implements KundenService {
 		KundenServiceImpl.id = id;
 	}
 
+	@Override
 	public HashMap<Integer, Kunde> getKunden() {
 		return kunden;
 	}
@@ -109,6 +99,12 @@ public class KundenServiceImpl implements KundenService {
 			}
 		}
 		return ergebnis;
+	}
+
+	@Override
+	public void deleteKundenZimmer(Kunde kunde) {
+		kunde.setKundenZimmer(null);
+
 	}
 
 }

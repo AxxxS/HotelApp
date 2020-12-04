@@ -16,15 +16,15 @@ public interface KundenService {
 
 	List<Kunde> readByNachName(String Nachname);
 
-	List<Kunde> readKundenInZimmer(int zNummer);
-
 	List<Kunde> readByKreis(Kreis kreis);
 
 	Kunde createUndBuchen(String name, String nachname, Kreis kreis, Zimmer kundenZimmer, Status kundenStatus);
 
 	boolean updateKreis(int id, Kreis newKreis);
 
-	public List<Kunde> readByName(String name);
+	void deleteKundenZimmer(Kunde kunde);
+
+	List<Kunde> readByName(String name);
 
 	HashMap<Integer, Kunde> getKunden();
 }
