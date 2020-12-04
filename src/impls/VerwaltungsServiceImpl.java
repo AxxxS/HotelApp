@@ -13,17 +13,18 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 
 	@Override
 	public void feuerAlarm(String passWort) {
+		int gesamtKundenAnzahl = 0;
 		if (passWort != this.pass) {
 			System.out.println("Falsches Passwort! Zugriff verweigert.");
 			return;
 		} else {
 			System.out.println("FEUERALARM!");
 			for (Stockwerk stockwerk : this.getStockwerke().values()) {
-
-				System.out.println(stockwerk.getGeschoss() + ".Geschoss, Kunden: " + this.readKundenInStockwerk(stockwerk.getGeschoss()) + ", Belegte Zimmer: "
-				        + this.readByStatus(stockwerk.getGeschoss(), Status.BELEGT));
+				gesamtKundenAnzahl = gesamtKundenAnzahl + this.readKundenInStockwerk(stockwerk.getGeschoss()).size();
+				System.out.println("Kunden in " + stockwerk.getGeschoss() + ".Geschoss: " + this.readKundenInStockwerk(stockwerk.getGeschoss()).size() + " "
+				        + this.readKundenInStockwerk(stockwerk.getGeschoss()) + " " + ", Belegte Zimmer: " + this.readByStatus(stockwerk.getGeschoss(), Status.BELEGT));
 			}
-
+			System.out.println(gesamtKundenAnzahl + " Kunden im Hotel.");
 		}
 
 	}
@@ -32,9 +33,7 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 	public void tagesEinahmen() {
 
 		for (Stockwerk stockwerk : this.getStockwerke().values()) {
-
 			for (Zimmer zimmer : stockwerk.getZimmerListe()) {
-
 				if (zimmer.getStatus() == Status.BELEGT) {
 					for (Kunde kunde : zimmer.getAktuelleKunden()) {
 						einahmen = einahmen + kunde.getRechnung();
@@ -70,7 +69,6 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 	public void belegen(int zNummer) {
 
 		Zimmer zimmer = this.readZ(zNummer);
-
 		if (zimmer.getStatus() == Status.GEBUCHT) {
 
 			zimmer.setStatus(Status.BELEGT);
@@ -89,22 +87,21 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 		if (kunde.getKreis().isPraesSuiteErlaubt() == false && zimmer.getTyp() == ZimmerTyp.PS) {
 
 			System.err.println("Präsidentensuits sind für Standart member nicht verfügbar!! ZimmerNr." + zNummer + " wurde nicht gebucht.");
-
 			return;
+
 		} else if (zimmer.getGebuchteKunden().size() == zimmer.getTyp().getBett()) {
 
 			System.err.println("ZimmerNr." + zNummer + " ist voll! ZimmerNr." + zNummer + " wurde nicht gebucht.");
-
 			return;
+
 		} else if (zimmer.getStatus() == Status.BELEGT) {
 
 			System.err.println("ZimmerNr." + zNummer + "ist bereits belegt! ZimmerNr." + zNummer + " wurde nicht gebucht.");
-
 			return;
+
 		} else if (zimmer.getStatus() == Status.GEBUCHT) {
 
 			System.err.println("ZimmerNr." + zNummer + "ist bereits gebucht! ZimmerNr." + zNummer + " wurde nicht gebucht.");
-
 			return;
 		}
 		{
@@ -115,7 +112,6 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 			zimmer.setStatus(Status.GEBUCHT);
 			zimmer.getGebuchteKunden().add(kunde);
 			System.out.println("ZimmerNr." + zNummer + " wurde für " + kunde.getName() + " gebucht");
-
 		}
 
 	}
