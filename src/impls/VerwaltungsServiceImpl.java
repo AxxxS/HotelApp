@@ -15,14 +15,20 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 	public void feuerAlarm(String passWort) {
 		int gesamtKundenAnzahl = 0;
 		if (passWort != this.pass) {
-			System.out.println("Falsches Passwort! Zugriff verweigert.");
+			System.out.println();
+			System.out.println("Falsches Passwort! Zugriff verweigert .");
+			System.out.println("Ihr mÃ¼sst leider alle verbrennen weil ich das Passwort vergessen habe (ãƒ„), echt sinnvolle Funktion!! Genial!");
 			return;
 		} else {
+			System.out.println("!!!!");
 			System.out.println("FEUERALARM!");
+			System.out.println("!!!!");
 			for (Stockwerk stockwerk : this.getStockwerke().values()) {
 				gesamtKundenAnzahl = gesamtKundenAnzahl + this.readKundenInStockwerk(stockwerk.getGeschoss()).size();
-				System.out.println("Kunden in " + stockwerk.getGeschoss() + ".Geschoss: " + this.readKundenInStockwerk(stockwerk.getGeschoss()).size() + " "
-				        + this.readKundenInStockwerk(stockwerk.getGeschoss()) + " " + ", Belegte Zimmer: " + this.readByStatus(stockwerk.getGeschoss(), Status.BELEGT));
+				System.out.println("Kundenanzahl im " + stockwerk.getGeschoss() + ".Geschoss: " + this.readKundenInStockwerk(stockwerk.getGeschoss()).size() + ".");
+
+				System.out.println("Belegte Zimmer: " + this.readByStatus(stockwerk.getGeschoss(), Status.BELEGT));
+				System.out.println();
 			}
 			System.out.println(gesamtKundenAnzahl + " Kunden im Hotel.");
 		}
@@ -41,7 +47,7 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 				}
 			}
 		}
-		System.out.println("Tageseinahmen: " + einahmen + "€.");
+		System.out.println("Tageseinahmen: " + einahmen + "â‚¬.");
 	}
 
 	@Override
@@ -72,6 +78,9 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 		if (zimmer.getStatus() == Status.GEBUCHT) {
 
 			zimmer.setStatus(Status.BELEGT);
+			for (Kunde kunde : zimmer.getAktuelleKunden()) {
+				kunde.setKundenStatus(Status.BELEGT);
+			}
 			zimmer.setAktuelleKunden(zimmer.getGebuchteKunden());
 
 			System.out.println("ZimmerNr." + zNummer + " wurde belegt!");
@@ -86,7 +95,7 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 
 		if (kunde.getKreis().isPraesSuiteErlaubt() == false && zimmer.getTyp() == ZimmerTyp.PS) {
 
-			System.err.println("Präsidentensuits sind für Standart member nicht verfügbar!! ZimmerNr." + zNummer + " wurde nicht gebucht.");
+			System.err.println("PrÃ¤sidentensuits sind fÃ¼r Standart member nicht verfÃ¼gbar!! ZimmerNr." + zNummer + " wurde nicht gebucht.");
 			return;
 
 		} else if (zimmer.getGebuchteKunden().size() == zimmer.getTyp().getBett()) {
@@ -111,7 +120,7 @@ public class VerwaltungsServiceImpl extends StockwerkServsImpl implements Verwal
 
 			zimmer.setStatus(Status.GEBUCHT);
 			zimmer.getGebuchteKunden().add(kunde);
-			System.out.println("ZimmerNr." + zNummer + " wurde für " + kunde.getName() + " gebucht");
+			System.out.println("ZimmerNr." + zNummer + " wurde fÃ¼r " + kunde.getName() + " gebucht");
 		}
 
 	}

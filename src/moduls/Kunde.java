@@ -1,9 +1,10 @@
 package moduls;
 
 public class Kunde {
-	private int id;
+
 	private String name;
 	private String nachname;
+	private int id;
 	private Status kundenStatus;
 	private Kreis kreis;
 	private double rechnung;
@@ -61,13 +62,13 @@ public class Kunde {
 		return this.kundenZimmer;
 	}
 
-	public void setKundenZimmer(Zimmer kundenZimmer) {
-		this.kundenZimmer = kundenZimmer;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Kunde [id=%s, name=%s, nachname=%s, kreis=%s, rechnung=%s]", this.id, this.name, this.nachname, this.kreis, this.rechnung);
+		return String.format("Kunde: %s %s, ID:%s, %s Member, Rechnung: %s€ ", this.name, this.nachname, this.id, this.kreis, this.rechnung);
+	}
+
+	public void setKundenZimmer(Zimmer zimmer) {
+		this.kundenZimmer = zimmer;
 	}
 
 }

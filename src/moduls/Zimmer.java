@@ -70,8 +70,7 @@ public class Zimmer {
 
 	@Override
 	public String toString() {
-		return String.format("Zimmer [zNummer=%s, zgeschoss=%s, status=%s, typ=%s, gebuchteKunden=%s, aktuelleKunden=%s, bezahlt=%s]", this.zNummer, this.zgeschoss, this.status, this.typ,
-		        this.gebuchteKunden, this.aktuelleKunden, this.bezahlt);
+		return String.format("Nr.%s, %s.OG, Typ:%s, Kunden: %s Bezahlt?: %s", this.zNummer, this.zgeschoss, this.typ, this.aktuelleKunden, this.bezahlt);
 	}
 
 }
