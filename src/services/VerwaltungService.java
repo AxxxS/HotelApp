@@ -1,13 +1,10 @@
 package services;
 
-import moduls.Kunde;
-import moduls.Zimmer;
-
 public interface VerwaltungService {
 
 	void freiSetzen(int zNummer);
 
-	void buchen(Kunde kunde, Zimmer zimmer);
+	void buchen(String name, String nachNahme, int zNummer);
 
 	void feuerAlarm(String passwort);
 

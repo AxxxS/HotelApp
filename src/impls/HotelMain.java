@@ -34,9 +34,9 @@ public class HotelMain {
 		kService.create("Amir", "Sodah", Kreis.PLATIN);
 		// Kunden erstellt, benannt und Kreis zugwiesen.
 
-		vService.buchen(kService.readByFullName("Amir", "Sodah"), zService.readZ(56));
-		vService.buchen(kService.readByFullName("Max", "Mustermann"), zService.readZ(55));
-		vService.buchen(kService.readByFullName("Max", "Mustermann"), zService.readZ(1));
+		vService.buchen("Amir", "Sodah", 56);
+		vService.buchen("Max", "Mustermann", 55);
+		vService.buchen("Max", "Mustermann", 1);
 		// ZimmerNr. 56 und 55 werden gebucht. Wenn nicht-Platin Kunden eine PS buchen
 		// wollen, das Zimmer bereits gebucht/belegt ist wird die Methode beendet und
 		// gibt eine Meldung heraus.
