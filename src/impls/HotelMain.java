@@ -7,9 +7,7 @@ import services.VerwaltungService;
 import services.ZimmerService;
 
 public class HotelMain {
-
 	public static void main(String[] args) {
-
 		VerwaltungService vService = new VerwaltungsServiceImpl();
 		StockwerkService sService = new StockwerkServsImpl();
 		ZimmerService zService = new ZimmerServiceImpl();
@@ -32,7 +30,7 @@ public class HotelMain {
 
 		kService.create("Max", "Mustermann", Kreis.STANDART);
 		kService.create("Amir", "Sodah", Kreis.PLATIN);
-		// Kunden erstellt, benannt und Kreis zugwiesen.
+		// Kunden erstellt, benannt und Kreis zugwiesen.F
 
 		vService.buchen("Amir", "Sodah", 56);
 		vService.buchen("Max", "Mustermann", 55);
@@ -52,13 +50,11 @@ public class HotelMain {
 
 		vService.tagesEinahmen();
 		// Für jedes belegte Zimmer werden die zu bezahlenden Rechnungen
-		// zusammengerechnet. Kunden mit dem Kreis Platin wird der Zimmerpreis um 5%
-		// reduziert.
+		// zusammengerechnet. Platinkunden bekommen Rabatt.
 
 		vService.feuerAlarm("gutesPasswort123");
 		// Für jedes Stockwerk werden die belegten Zimmer aufgezählt und die Gesamtzahl
-		// der Kunden angezeigt. Benötigt ein Passwort, bei falscher Eingabe wird die
-		// Methode mit einer Fehlermeldung beendet.
+		// der Kunden angezeigt. Benötigt ein Passwort.
 
 		vService.feuerAlarm("lol");
 		// Beispiel falsches Passwort.
