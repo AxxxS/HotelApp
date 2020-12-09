@@ -1,31 +1,31 @@
-package moduls;
+package klassen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Stockwerk {
 
-	private int geschoss;
-	private List<Zimmer> zimmerListe = new ArrayList<Zimmer>();
+	private String geschoss;
+	private List<Zimmer> zimmerListe = new ArrayList<>();
 
-	public int getGeschoss() {
+	public String getGeschoss() {
 		return this.geschoss;
-	}
-
-	public void setGeschoss(int geschoss) {
-		this.geschoss = geschoss;
 	}
 
 	public List<Zimmer> getZimmerListe() {
 		return this.zimmerListe;
 	}
 
-	public void setZimmerListe(Zimmer zimmer) {
-		this.zimmerListe.add(zimmer);
+	public void setGeschoss(String geschoss) {
+		this.geschoss = geschoss;
 	}
 
 	public void setZimmerListe(List<Zimmer> zimmerListe) {
 		this.zimmerListe = zimmerListe;
+	}
+
+	public void setZimmerListe(Zimmer zimmer) {
+		this.zimmerListe.add(zimmer);
 	}
 
 	@Override
